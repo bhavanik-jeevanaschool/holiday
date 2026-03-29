@@ -1,0 +1,208 @@
+/* 🌈 GENERAL */
+body {
+    margin: 0;
+    font-family: 'Comic Sans MS', cursive;
+    background: linear-gradient(#93c5fd, #fef9c3);
+    text-align: center;
+    overflow-x: hidden;
+}
+
+/* 🎁 INTRO */
+#intro {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 🎈 Background fun */
+.bg-fun span {
+    position: fixed;
+    font-size: 30px;
+    animation: float 4s infinite;
+    opacity: 0.6;
+}
+
+.bg-fun span:nth-child(1){ top:10%; left:10%; }
+.bg-fun span:nth-child(2){ top:20%; right:10%; }
+.bg-fun span:nth-child(3){ bottom:15%; left:15%; }
+.bg-fun span:nth-child(4){ bottom:10%; right:10%; }
+
+@keyframes float {
+    50% { transform: translateY(-20px); }
+}
+
+/* 🎯 TEXT */
+.title {
+    font-size: 40px;
+    color: white;
+}
+
+.subtitle {
+    font-size: 20px;
+    color: white;
+    margin-bottom: 30px;
+}
+
+/* 🎁 BOX */
+.gift {
+    width: 180px;
+    height: 180px;
+    position: relative;
+    cursor: pointer;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    50% { transform: translateY(-10px); }
+}
+
+.box {
+    width: 180px;
+    height: 120px;
+    background: #ff4d4d;
+    border-radius: 20px;
+    border: 5px solid black;
+    position: absolute;
+    bottom: 0;
+}
+
+.lid {
+    width: 190px;
+    height: 60px;
+    background: #ff4d4d;
+    border-radius: 20px;
+    border: 5px solid black;
+    position: absolute;
+    top: 0;
+    left: -5px;
+    transition: 0.6s;
+}
+
+/* 🎀 Ribbon */
+.box::before, .lid::before {
+    content: "";
+    position: absolute;
+    width: 25px;
+    height: 100%;
+    background: yellow;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* 📖 STORY */
+#activities {
+    display: none;
+    padding: 20px;
+}
+
+.heading {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+/* 🖼️ BIG VIEWER */
+.viewer {
+    width: 90%;
+    max-width: 700px;
+    margin: 20px auto;
+}
+
+.viewer img {
+    width: 100%;
+    height: 70vh;
+    object-fit: contain;
+    border-radius: 20px;
+    background: white;
+    padding: 10px;
+    transition: opacity 0.3s;
+}
+
+/* 🎮 CONTROLS */
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.controls button {
+    font-size: 24px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    background: yellow;
+    border: none;
+}
+
+#page-indicator {
+    font-size: 18px;
+}
+
+/* 🔄 RETRY */
+.retry {
+    margin-top: 30px;
+    padding: 12px 20px;
+    font-size: 18px;
+    border-radius: 10px;
+    background: orange;
+    border: none;
+}
+
+/* 🎉 CONFETTI */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    top: 50%;
+    left: 50%;
+}
+
+/* 🎈 BALLOONS */
+.balloon {
+    position: fixed;
+    bottom: -50px;
+    font-size: 30px;
+    animation: rise 4s linear;
+}
+
+
+@keyframes rise {
+    to { transform: translateY(-120vh); }
+}
+
+/* 🎵 Music Button - Kid Friendly Style */
+#music-btn {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 1000;
+
+    font-size: 20px;
+    padding: 10px 14px;
+
+    border-radius: 12px;
+    background: #fde047; /* same yellow theme */
+    border: none;
+
+    box-shadow: 0 6px 0 #f59e0b; /* orange shadow */
+    cursor: pointer;
+
+    transition: all 0.15s ease;
+}
+
+/* 👇 Press effect */
+#music-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 #f59e0b;
+}
+
+/* 😊 Gentle bounce (alive feel) */
+#music-btn {
+    animation: musicBounce 2s infinite ease-in-out;
+}
+
+@keyframes musicBounce {
+    50% { transform: translateY(-4px); }
+}

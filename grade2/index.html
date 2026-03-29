@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎁 Magic Activity Box</title>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<audio id="bg-music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<button id="music-btn" onclick="toggleMusic()">🔊</button>
+
+<!-- 🎁 INTRO -->
+<section id="intro">
+
+    <div class="bg-fun">
+        <span>🎈</span>
+        <span>✨</span>
+        <span>⭐</span>
+        <span>🎉</span>
+    </div>
+
+    <h1 class="title">🎁 Holiday Surprise!</h1>
+
+    <p class="subtitle">Tap the gift and see the magic ✨</p>
+
+    <div class="gift" onclick="openBox()">
+        <div class="lid" id="lid"></div>
+        <div class="box"></div>
+    </div>
+
+</section>
+
+<!-- 📖 STORYBOOK -->
+<section id="activities">
+
+    <h2 class="heading">📖 Let's Explore!</h2>
+
+    <div class="viewer">
+
+        <img id="slide-img" src="activity/1.jpeg">
+
+    </div>
+
+    <div class="controls">
+        <button onclick="prevSlide()">⬅️</button>
+        <span id="page-indicator">1 / 7</span>
+        <button onclick="nextSlide()">➡️</button>
+    </div>
+
+    <button class="retry" onclick="reset()">🔄 Open Again</button>
+
+</section>
+
+<script>
+
+const images = [
+"activity/1.jpeg",
+"activity/2.jpeg",
+"activity/3.jpeg",
+"activity/4.jpeg",
+"activity/5.jpeg",
+"activity/6.jpeg",
+"activity/7.jpeg"
+];
+
+const music = document.getElementById("bg-music");
+ const btn = document.getElementById("music-btn");
+
+let current = 0;
+
+function openBox() {
+
+    const lid = document.getElementById("lid");
+    
+
+    music.play().catch(() => {}); 	
+
+    lid.style.transform = "translateY(-140px) rotate(-25deg)";
+    lid.style.opacity = "0";
+
+    confetti();
+    balloons();
+
+    setTimeout(() => {
+        document.getElementById("intro").style.display = "none";
+        document.getElementById("activities").style.display = "block";
+    }, 800);
+}
+
+/* 🎉 Confetti */
+function confetti() {
+    for (let i = 0; i < 40; i++) {
+        const c = document.createElement("div");
+        c.className = "confetti";
+        c.style.background = ["red","yellow","blue","green","pink"][Math.floor(Math.random()*5)];
+        document.body.appendChild(c);
+
+        const x = (Math.random()-0.5)*600;
+        const y = (Math.random()-0.5)*600;
+
+        c.animate([
+            { transform: "translate(-50%,-50%)" },
+            { transform: `translate(${x}px,${y}px)` }
+        ], { duration: 1000 });
+
+        setTimeout(()=>c.remove(),1000);
+    }
+}
+
+/* 🎈 Balloons */
+function balloons() {
+    for (let i = 0; i < 10; i++) {
+        const b = document.createElement("div");
+        b.className = "balloon";
+        b.innerHTML = ["🎈","✨","🎉"][Math.floor(Math.random()*3)];
+        b.style.left = Math.random()*100 + "vw";
+        document.body.appendChild(b);
+
+        setTimeout(()=>b.remove(),4000);
+    }
+}
+
+/* 📖 Storybook */
+function updateSlide(dir) {
+    const img = document.getElementById("slide-img");
+
+    img.style.opacity = "0";
+
+    setTimeout(() => {
+        img.src = images[current];
+        img.style.opacity = "1";
+
+        document.getElementById("page-indicator").innerText =
+        (current+1)+" / "+images.length;
+    }, 200);
+}
+
+function nextSlide() {
+    current = (current + 1) % images.length;
+    updateSlide();
+}
+
+function prevSlide() {
+    current = (current - 1 + images.length) % images.length;
+    updateSlide();
+}
+
+function reset() {
+    location.reload();
+}
+
+/* 🔘 Button control */
+function toggleMusic() {
+    if (music.paused) {
+        music.muted = false;
+        music.play();
+        btn.innerText = "🔊";
+    } else {
+        music.pause();
+        btn.innerText = "🔇";
+    }
+}
+
+</script>
+
+</body>
+</html>
