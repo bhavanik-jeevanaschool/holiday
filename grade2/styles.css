@@ -102,43 +102,54 @@ body {
     margin-bottom: 20px;
 }
 
-/* 🖼️ BIG VIEWER */
+/* 🖼️ FULL-SCREEN ADVENTURE VIEWER */
 .viewer {
-    width: 95%; /* Increased from 90% to use more screen width */
-    max-width: 800px; /* Increased slightly for better PC viewing */
-    margin: 10px auto;
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* Adds a soft depth */
-    overflow: hidden; /* Ensures the image doesn't bleed out of rounded corners */
+    width: 100vw; /* Takes full width of the viewport */
+    max-width: 1000px; /* Limits size on large monitors for quality */
+    margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
+    background: #ffffff; /* White background to make the content pop */
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    overflow: hidden;
 }
 
 .viewer img {
     width: 100%;
-    height: auto; /* Changed from 70vh to auto to maintain aspect ratio */
-    max-height: 75vh; /* Prevents the image from being taller than the screen */
+    height: auto;
+    /* This ensures it fills the screen height but leaves room for buttons */
+    max-height: 80vh; 
+    object-fit: contain;
     display: block;
-    object-fit: contain; /* Ensures the whole image is visible without cropping */
-    transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease;
 }
 
 /* 📱 MOBILE OPTIMIZATIONS */
 @media (max-width: 600px) {
-    .viewer {
-        width: 100%; /* Use full width on small phones */
-        margin: 5px auto;
+    #activities {
+        padding: 10px 5px; /* Minimal padding for more space */
     }
-    
+
+    .viewer {
+        width: 100%; 
+        border-radius: 0; /* Square edges on mobile use every pixel */
+    }
+
     .viewer img {
-        max-height: 65vh; /* Slightly shorter on mobile to keep buttons visible */
+        /* Gives more vertical space on mobile phones */
+        max-height: 75vh; 
+    }
+
+    .controls {
+        gap: 40px; /* Easier for small fingers to tap */
+        margin-top: 15px;
     }
 
     .heading {
-        font-size: 24px;
-        margin-bottom: 10px;
+        font-size: 22px;
+        margin-top: 5px;
     }
 }
 
